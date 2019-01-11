@@ -43,7 +43,7 @@ def factorize(e, n):
             if i == 381:
                 print("hello")
             # round down 1/residue_from_last_iteration
-            qi.append(int(1/r[i-1]))
+            qi.append(int(1/r[0]))
             # copy list for usage
             qi_temp = qi.copy()
             # if iteration_number is equal: the last qi value needs to be +1
@@ -53,7 +53,7 @@ def factorize(e, n):
             # calculate approximation ai
             ai = Fraction(recursive_fraction(qi_temp))
             # calculate residue
-            r.append(1/Fraction(str(r[i-1]))-qi[i])
+            r[0] = 1/Fraction(str(r[0]))-qi[i]
 
         # calculate solution candidates
         k = ai.numerator
@@ -74,7 +74,6 @@ def factorize(e, n):
             # x1,2 = p_plus_q/2 -/+ math.sqrt(pow(-p_plus_q/2, 2)-n)
             tmp = Fraction(p_plus_q / 2)
             tmp_s = np.power(tmp, 2)
-            tmp_s = Fraction(tmp_s / 4)
             tmp_s_n = Fraction(tmp_s - n)
             x1_n = Decimal.sqrt(Decimal(tmp_s_n.numerator))
             x1_d = Decimal.sqrt(Decimal(tmp_s_n.denominator))
